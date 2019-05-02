@@ -1,12 +1,15 @@
 
 using Amazon.Lambda.TestUtilities;
+using Amazon.XRay.Recorder.Core;
 using Xunit;
 
 namespace iCalFeed.Tests
 {
     public class FunctionTest
     {
-        private string icalurl = "YOUR_ICS_URL_HERE";
+        private string icalurl = "https://calendar.google.com/calendar/ical/mg8l31ag8ua059trmktgdq6v80%40group.calendar.google.com/private-342fffdc823bfcaea433775659169545/basic.ics";
+
+        public FunctionTest() => AWSXRayRecorder.Instance.BeginSegment("unit-test");
 
         [Fact]
         public void FunctionHandler_ValidParams_ReturnsEventList()
